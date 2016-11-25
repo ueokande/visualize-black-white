@@ -1,0 +1,12 @@
+body {
+  font: 10px sans-serif;
+  shape-rendering: crispEdges;
+}
+
+.day {
+  fill: #d6e685;
+}
+
+.absence {
+  fill: #ffb0b0;
+}

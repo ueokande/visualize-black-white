@@ -1,96 +1,11 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-
-body {
-  font: 10px sans-serif;
-  shape-rendering: crispEdges;
-}
-
-.day {
-  fill: #d6e685
-}
-
-</style>
-<body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
-
-var rangeEnd = new Date(),
-    rangeBegin = new Date(rangeEnd.getFullYear() - 1, rangeEnd.getMonth(), rangeEnd.getDate());
-
-var dataset = [
-  "2016-10-18T11:20:31Z",
-  "2016-10-19T10:22:48Z",
-  "2016-10-18T09:32:51Z",
-  "2016-10-17T09:45:11Z",
-  "2016-10-18T00:52:36Z",
-  "2016-10-18T00:43:12Z",
-  "2016-10-14T09:46:58Z",
-  "2016-10-13T09:02:16Z",
-  "2016-10-12T11:00:58Z",
-  "2016-10-11T10:04:33Z",
-  "2016-10-07T10:32:10Z",
-  "2016-10-06T10:42:50Z",
-  "2016-10-05T09:24:18Z",
-  "2016-10-04T09:13:09Z",
-  "2016-10-03T09:39:43Z",
-  "2016-09-30T11:02:46Z",
-  "2016-09-29T10:00:42Z",
-  "2016-09-28T09:42:47Z",
-  "2016-09-27T09:27:29Z",
-  "2016-09-26T10:52:45Z",
-  "2016-09-23T10:23:56Z",
-  "2016-09-21T10:20:22Z",
-  "2016-09-16T10:08:15Z",
-  "2016-09-15T08:56:26Z",
-  "2016-09-13T11:27:20Z",
-  "2016-09-12T09:12:21Z",
-  "2016-09-09T10:52:17Z",
-  "2016-09-07T10:42:03Z",
-  "2016-09-06T09:24:32Z",
-  "2016-09-05T10:26:07Z",
-]
-
-var completedData = d3.time.days(rangeBegin, rangeEnd).map(function(date) {
-  found = dataset.find(function(d) {
-    d = new Date(d)
-    return d.getFullYear() == date.getFullYear() && d.getMonth() == date.getMonth() && d.getDate() == date.getDate();
-  });
-  return typeof found !== 'undefined' ? new Date(found) : date
-});
-
-var width = 960,
-    height = 136,
-    cellSize = 10
-
-var percent = d3.format(".1%")
-
-function colorf(date) {
-  if (date.getHours() == 0) {
-    return ""
-  } else if (date.getHours() < 18) {
-    return "white"
-  } else if (date.getHours() < 20) {
-    var scalef = d3.scale.linear().domain([new Date(0, 0, 0, 18, 00), new Date(0, 0, 0, 20, 00)])
-    return scalef.range(["#ffffff", "#000000"])(new Date(0, 0, 0, date.getHours(), date.getMinutes()));
-  } else {
-    var scalef = d3.scale.linear().domain([new Date(0, 0, 0, 20, 00), new Date(0, 0, 0, 21, 00)])
-    return scalef.range(["#000000", "#ff0000"])(new Date(0, 0, 0, date.getHours(), date.getMinutes()))
-  }
-}
-
-var days = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-  .selectAll(".day")
-    .data(completedData)
-  .enter().append("rect")
-    .attr("class", "day")
-    .attr("width", cellSize)
-    .attr("height", cellSize)
-    .attr("x", function(d) { return d3.time.weekOfYear(d) * (cellSize + 2); })
-    .attr("y", function(d) { return d.getDay() * (cellSize + 2); })
-    .style("fill", colorf)
-</script>
-
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='style.css' />
+  </head>
+  <body>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
