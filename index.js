@@ -46,6 +46,27 @@ d3.json("data.json", function(dataset) {
     return "day"
   }
 
+  function pad(number) {
+    if (number < 10) {
+      return '0' + number;
+    }
+    return number;
+  }
+
+  function htmlf(date) {
+    var year = date.getFullYear();
+    var monthName = date.toLocaleString('en-US', { month: 'short' })
+    var day = date.getDate();
+    var hour = date.getHours();
+    var mins = date.getMinutes();
+    return "<strong>" + pad(hour) + ":" + pad(mins) + "</strong> on " + monthName + " day," + year;
+  }
+
+  var tip = d3.tip()
+      .attr('class', 'tip')
+      .offset([-10, 0])
+      .html(htmlf)
+
   var days = d3.select("body").append("svg")
       .attr("width", width)
       .attr("height", height)
@@ -59,4 +80,7 @@ d3.json("data.json", function(dataset) {
       .attr("x", function(d) { return d3.time.weekOfYear(d) * (cellSize + 2); })
       .attr("y", function(d) { return d.getDay() * (cellSize + 2); })
       .style("fill", colorf)
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+      .call(tip)
 });
