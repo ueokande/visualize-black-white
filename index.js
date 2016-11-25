@@ -59,7 +59,7 @@ d3.json("data.json", function(dataset) {
     var day = date.getDate();
     var hour = date.getHours();
     var mins = date.getMinutes();
-    return "<strong>" + pad(hour) + ":" + pad(mins) + "</strong> on " + monthName + " day," + year;
+    return "<strong>" + pad(hour) + ":" + pad(mins) + "</strong> on " + monthName + " " + day + ", " + year;
   }
 
   var tip = d3.tip()
