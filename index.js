@@ -17,24 +17,21 @@ d3.json("data.json", function(dataset) {
   var percent = d3.format(".1%")
 
   function colorf(date) {
-    if (date.getHours() === 0) {
+    if (date.getHours() === 0 && date.getMinutes() == 0) {
       return ""
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 18, 30)) {
+    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 18, 10)) {
       return "#f0f0f0";
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 19, 00)) {
+    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 19, 10)) {
       return "#a0a0a0";
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 19, 30)) {
-      return "#808080";
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 20, 0)) {
-      return "#404040";
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 20, 30)) {
+    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 19, 40)) {
+      return "#505050";
+    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 20, 10)) {
       return "#000000";
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 21, 0)) {
-      return "#880000";
-    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 22, 30)) {
-      return "#ff0000";
+    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 20, 40)) {
+      return "#800";
+    } else if (date < new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59)) {
+      return "#f00";
     }
-    console.log(date.getHours(), date.getMinutes());
     return "yellow"
   }
 
